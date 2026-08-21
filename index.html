@@ -6,7 +6,7 @@
     <title>cotizador web</title>
 </head>
 <body>
-    <h1>Hola Mundo</h1>
+    <h1>cotizador</h1>
 
     <div class ="header">
     <div class ="logo">Logo</div>
@@ -22,16 +22,85 @@
         <br><br>
         <div>
             <label for="dominio">dominio:
-                <input class="form-check-input" Type="checkbox" id="dominio" name="dominio">
+                <input class="form-check-input" Type="checkbox" id="dominio" name="dominio" data-precio="600">
             </label>
             <br><br>
             <label for="dominio">hosting:
-                <input class="form-check-input" Type="checkbox" id="hosting" name="hosting">
+                <input class="form-check-input" Type="checkbox" id="hosting" name="hosting" data-precio="1500">
             </label>
+            <br><br>
+            <label for="base-datos">Base de datos:
+    <input type="checkbox" id="base-datos" value="Base de datos" data-precio="7000">
+</label>
+<br><br>
+<label for="cambios-dev">cambios del dev:
+    <input type="checkbox" id="cambios-dev" value="cambios del dev" data-precio="2000">
+</label>            
+                <br><br>
+        </div class="total">total <span id="total">0</span></div>
         </div>
-        <div class="footer">
-            2026 Derechos reservados
+        <div class="footer">2026 Derechos reservados
         </div>
+        <div>   </div>
+        <script>
+            const dominio=document.querySelector('#dominio');
+            const hosting=document.querySelector('#hosting');
+            const baseDeDatos=document.querySelector('#base-datos');
+            const cambiosDev=document.querySelector('#cambios-dev');
+            
+            var total=0;
+            //evento click para hosting
+            hosting.addEventListener('click',function(){
+                if(hosting.checked){
+                    total+= parseInt(hosting.dataset.precio);
+                    console.log("hosting seleccionado, total: " + total);
+                }else{
+                    total-= parseInt(hosting.dataset.precio);
+                    console.log("hosting no seleccionado, total: " + total);
+                }
+                document.getElementById("total").textContent= total;
+            });
 
+            //evento click para dominio
+            dominio.addEventListener('click',function(){
+                if(dominio.checked){
+                    total+= parseInt(dominio.dataset.precio);
+                    console.log("dominio seleccionado, total: " + total);
+                }else{
+                    total-= parseInt(dominio.dataset.precio);
+                    console.log("dominio no seleccionado, total: " + total);
+                }
+                document.getElementById("total").textContent= total;
+            });
+
+            //evento click para base de datos
+            baseDeDatos.addEventListener('click',function(){
+                if(baseDeDatos.checked){
+                    total+= parseInt(baseDeDatos.dataset.precio);
+                    console.log("base de datos seleccionada, total: " + total);
+                }else{
+                    total-= parseInt(baseDeDatos.dataset.precio);
+                    console.log("base de datos no seleccionada, total: " + total);
+                }
+                document.getElementById("total").textContent= total;
+            });
+
+            //evento click para cambios del dev
+            cambiosDev.addEventListener('click',function(){
+                if(cambiosDev.checked){
+                    total+= parseInt(cambiosDev.dataset.precio);
+                    console.log("cambios del dev seleccionados, total: " + total);
+                }else{
+                    total-= parseInt(cambiosDev.dataset.precio);
+                    console.log("cambios del dev no seleccionados, total: " + total);
+                }
+                document.getElementById("total").textContent= total;
+            });
+
+            console.log(dominio.dataset.precio+"," +hosting.dataset.precio);
+            console.log(Number(dominio.dataset.precio) + Number(hosting.dataset.precio));
+            
+                
+        </script>
 </body>
 </html>
